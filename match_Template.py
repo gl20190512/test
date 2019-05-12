@@ -13,6 +13,7 @@ def PCBA_matchTemplate(image, templ, rsz_scale=1.0):
         rsz_im = image
         rsz_tpl = templ
         
+    #show image
     cv2.namedWindow("img",1)
     cv2.imshow("img", rsz_im)
     cv2.namedWindow("templ",1)
