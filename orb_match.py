@@ -16,8 +16,8 @@ if __name__ == "__main__":
         for i in range(1,len(sys.argv)):
             im_names.append(sys.argv[i])
     else:
-        #image_path='D:\\PCB\\20190327-2\\20190327机型3\\机型3正确照'
-        image_path='D:\\PCB\\20190311\\orig'
+        image_path='D:\\PCB\\20190327-2\\20190327_type3\\type3_correct'
+        #image_path='D:\\PCB\\20190311\\orig'
         im_names = glob.glob(os.path.join(image_path,"*.jpg"))
     
     #读入模板图像    
@@ -40,7 +40,6 @@ if __name__ == "__main__":
         # knn匹配器
         mt = cv2.BFMatcher(cv2.NORM_HAMMING,crossCheck=False)
         matches = mt.knnMatch(templ_des,img_des,k=2)
-        print("Done in : ", time.time()-tim, " seconds")
         
         #初步去除误匹配
         good = []
@@ -58,6 +57,7 @@ if __name__ == "__main__":
         else:
             print("Not enough matches are found - %d/%d" % (len(good),MIN_MATCH_COUNT))
         
+        print("Done in : ", time.time()-tim, " seconds")
         #print(matches)
         #绘制匹配
         img3 = cv2.drawMatchesKnn(templ, templ_kp, img, img_kp, matches, None, flags=2)
